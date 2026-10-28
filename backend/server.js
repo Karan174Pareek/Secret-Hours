@@ -17,11 +17,20 @@ import webhookRoutes from './routes/webhookRoutes.js';
 dotenv.config();
 
 // Connect MongoDB
-connectDB().catch((err) => console.error('[MongoDB Startup Error]:', err.message));
-
 const app = express();
 const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const CLIENT_URL = process.env.FRONTEND_URL || process.env.CLIENT_URL || 'http://localhost:5173';
+
+// Ensure MongoDB connection is active (handles serverless cold starts & warm invocations)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('[MongoDB Middleware Error]:', err.message);
+    next(err);
+  }
+});
 
 // Security Headers with Helmet
 app.use(
@@ -41,10 +50,26 @@ app.use(
   })
 );
 
-// CORS allow-list
+// Dynamic CORS configuration supporting local dev, Vercel preview domains, and FRONTEND_URL binding
+const allowedOrigins = [
+  CLIENT_URL,
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith('.vercel.app') ||
+        origin.includes('localhost')
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Razorpay-Signature'],
