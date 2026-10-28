@@ -18,23 +18,23 @@ export const Newsletter = () => {
     setStatus('loading');
     setTimeout(() => {
       setStatus('success');
-      setMessage('You have been cordially invited to the ZARIYA private salon roster.');
+      setMessage('Welcome to the Secret Society. We trust you with our secret.');
       setEmail('');
     }, 600);
   };
 
   return (
-    <section className="py-20 bg-[#F4F0EB] border-t border-[#E7E2DA]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="py-20 bg-[#F7F4EF] border-t border-[#E9DFD2]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center font-sans">
         <Reveal>
-          <span className="text-xs uppercase tracking-couture text-[#C59B27] font-semibold block mb-2">
-            Private Atelier Register
+          <span className="text-xs uppercase tracking-couture text-[#78645D] font-semibold block mb-2">
+            The Secret Society
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#141210] font-normal tracking-tight">
-            Exclusive Seasonal Previews
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#1D1B1A] font-normal tracking-tight">
+            We Have a Secret to Tell.
           </h2>
-          <p className="mt-3 text-xs sm:text-sm text-[#6E675F] max-w-lg mx-auto font-sans leading-relaxed">
-            Receive private invitations to couture salon trunk shows, private lookbooks, and bespoke fitting schedules before public release.
+          <p className="mt-3 text-xs sm:text-sm text-[#78645D] max-w-lg mx-auto font-sans leading-relaxed">
+            Join our private circle for cryptic campaign teasers, early access to new capsule drops, and stories unfolding in public.
           </p>
         </Reveal>
 
@@ -52,19 +52,19 @@ export const Newsletter = () => {
                     if (status === 'error') setStatus('idle');
                   }}
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-3.5 bg-white border border-[#E7E2DA] text-xs text-[#141210] placeholder-[#A8A29E] focus:outline-none focus:border-[#C59B27] rounded-sm transition-colors"
+                  className="w-full px-4 py-3.5 bg-white border border-[#E9DFD2] text-xs text-[#1D1B1A] placeholder-[#78645D]/60 focus:outline-none focus:border-[#1D1B1A] rounded-sm transition-colors"
                 />
               </div>
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full sm:w-auto px-6 py-3.5 bg-[#141210] text-[#FAF8F5] hover:bg-[#C59B27] text-xs uppercase tracking-couture font-medium transition-colors rounded-sm flex items-center justify-center shrink-0 cursor-pointer disabled:opacity-70"
+                className="w-full sm:w-auto px-6 py-3.5 bg-[#1D1B1A] text-[#F7F4EF] hover:bg-[#78645D] text-xs uppercase tracking-couture font-medium transition-colors rounded-sm flex items-center justify-center shrink-0 cursor-pointer disabled:opacity-70"
               >
                 {status === 'loading' ? (
-                  <span>Subscribing...</span>
+                  <span>Entering...</span>
                 ) : (
                   <>
-                    <span>Request Invitation</span>
+                    <span>Enter The Society</span>
                     <ArrowRight size={14} className="ml-2" />
                   </>
                 )}

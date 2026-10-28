@@ -7,23 +7,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        zariya: {
-          bg: '#FAF8F5',
+        secret: {
+          midnight: '#1D1B1A',
+          ivory: '#F7F4EF',
+          champagne: '#E9DFD2',
+          mocha: '#78645D',
+          primary: '#1D1B1A',
           surface: '#FFFFFF',
-          'surface-soft': '#F4F0EB',
-          primary: '#141210',
-          secondary: '#3D3833',
-          muted: '#6E675F',
-          accent: '#C59B27',
-          'accent-hover': '#9E7A18',
-          border: '#E7E2DA',
+          'surface-soft': '#F7F4EF',
+          secondary: '#78645D',
+          border: '#E9DFD2',
+        },
+        zariya: {
+          bg: '#F7F4EF',
+          surface: '#FFFFFF',
+          'surface-soft': '#E9DFD2',
+          primary: '#1D1B1A',
+          secondary: '#78645D',
+          muted: '#78645D',
+          accent: '#1D1B1A',
+          'accent-hover': '#78645D',
+          border: '#E9DFD2',
           error: '#991B1B',
           success: '#166534',
         }
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'],
       },
       letterSpacing: {
         couture: '0.25em',

@@ -23,7 +23,7 @@ export function formatInvoiceNumber(sequenceNumber, date = new Date()) {
 
   const fy = `${startYear}-${String(endYear).slice(2)}`;
   const paddedSeq = String(sequenceNumber).padStart(5, '0');
-  return `ZAR/${fy}/${paddedSeq}`;
+  return `SH/${fy}/${paddedSeq}`;
 }
 
 /**
@@ -265,14 +265,19 @@ export function generateInvoicePdf(order, res) {
     .fontSize(7)
     .fillColor(grayColor)
     .text(
-      'Declaration: We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.',
+      `"We trust you with our secret." — ${brandConfig.name} Atelier.`,
       40,
       bottomY + 8
     )
     .text(
-      'This is a computer-generated tax invoice issued in accordance with Section 31 of the CGST Act, 2017. Authorized Signatory: Zariya Haute Couture Pvt Ltd.',
+      'Declaration: We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.',
       40,
       bottomY + 18
+    )
+    .text(
+      `This is a computer-generated tax invoice issued in accordance with Section 31 of the CGST Act, 2017. Authorized Signatory: ${brandConfig.legalName}.`,
+      40,
+      bottomY + 28
     );
 
   doc.end();

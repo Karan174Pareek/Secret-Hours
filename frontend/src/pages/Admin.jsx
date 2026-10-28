@@ -373,9 +373,9 @@ export const Admin = () => {
               <span className="text-[10px] uppercase tracking-couture text-[#C59B27] font-semibold block mb-1">
                 Atelier Administration
               </span>
-              <h1 className="font-serif text-2xl text-[#141210]">Executive Portal Login</h1>
-              <p className="text-xs text-[#6E675F] mt-2">
-                Secured access for atelier directors, GST auditors, and inventory fulfillment.
+              <h1 className="font-serif text-2xl text-[#1D1B1A]">Executive Portal Login</h1>
+              <p className="text-xs text-[#78645D] mt-2 font-sans">
+                Secured access for Secret Hours directors, GST auditors, and inventory fulfillment.
               </p>
             </div>
 
@@ -385,37 +385,37 @@ export const Admin = () => {
               </div>
             )}
 
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-4 font-sans">
               <div>
-                <label className="block text-xs text-[#3D3833] font-medium mb-1">Director Email *</label>
+                <label className="block text-xs text-[#1D1B1A] font-medium mb-1">Director Email *</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@zariyaatelier.com"
-                  className="w-full px-3.5 py-2.5 bg-[#FAF8F5] border border-[#E7E2DA] text-xs text-[#141210] rounded-sm focus:outline-none focus:border-[#C59B27]"
+                  placeholder="admin@secrethours.com"
+                  className="w-full px-3.5 py-2.5 bg-[#F7F4EF] border border-[#E9DFD2] text-xs text-[#1D1B1A] rounded-sm focus:outline-none focus:border-[#1D1B1A]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-[#3D3833] font-medium mb-1">Password *</label>
+                <label className="block text-xs text-[#1D1B1A] font-medium mb-1">Password *</label>
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full px-3.5 py-2.5 bg-[#FAF8F5] border border-[#E7E2DA] text-xs text-[#141210] rounded-sm focus:outline-none focus:border-[#C59B27]"
+                  className="w-full px-3.5 py-2.5 bg-[#F7F4EF] border border-[#E9DFD2] text-xs text-[#1D1B1A] rounded-sm focus:outline-none focus:border-[#1D1B1A]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loginLoading}
-                className="w-full py-3.5 bg-[#141210] text-[#FAF8F5] hover:bg-[#C59B27] text-xs uppercase tracking-couture font-medium rounded-sm transition-colors cursor-pointer"
+                className="w-full py-3.5 bg-[#1D1B1A] text-[#F7F4EF] hover:bg-[#78645D] text-xs uppercase tracking-couture font-medium rounded-sm transition-colors cursor-pointer"
               >
-                {loginLoading ? 'Authenticating...' : 'Enter Atelier Dashboard'}
+                {loginLoading ? 'Authenticating...' : 'Enter Secret Hours Dashboard'}
               </button>
             </form>
           </div>
@@ -426,16 +426,16 @@ export const Admin = () => {
 
   return (
     <PageTransition>
-      <div className="bg-[#FAF8F5] min-h-screen py-10">
+      <div className="bg-[#F7F4EF] min-h-screen py-10 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-[#E7E2DA] mb-8 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-[#E9DFD2] mb-8 gap-4">
             <div>
-              <span className="text-[10px] uppercase tracking-couture text-[#C59B27] font-semibold block">
+              <span className="text-[10px] uppercase tracking-couture text-[#78645D] font-semibold block font-sans">
                 Atelier Administration &middot; Siliguri, West Bengal
               </span>
-              <h1 className="font-serif text-3xl text-[#141210]">
-                ZARIYA Executive Dashboard
+              <h1 className="font-serif text-3xl text-[#1D1B1A]">
+                SECRET HOURS Executive Dashboard
               </h1>
             </div>
             <div className="flex items-center space-x-3 text-xs">

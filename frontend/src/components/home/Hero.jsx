@@ -36,11 +36,11 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DURATION.base, ease: EASE_COUTURE, delay: 0.1 }}
-          className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#141210]/5 border border-[#C59B27]/40 mb-6"
+          className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#1D1B1A]/5 border border-[#78645D]/30 mb-6"
         >
-          <Sparkles size={13} className="text-[#C59B27]" />
-          <span className="text-[10px] uppercase tracking-couture font-semibold text-[#141210]">
-            AUTUMN / WINTER 2026 COUTURE RUNWAY
+          <Sparkles size={13} className="text-[#78645D]" />
+          <span className="text-[10px] uppercase tracking-couture font-semibold text-[#1D1B1A]">
+            SECRET HOURS PRESENTS &middot; COLLECTION 01: UNBECOMING
           </span>
         </m.div>
 
@@ -49,10 +49,10 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DURATION.slow, ease: EASE_COUTURE, delay: 0.2 }}
-          className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[1.08] tracking-tight text-[#141210] max-w-4xl"
+          className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] leading-[1.08] tracking-tight text-[#1D1B1A] max-w-4xl"
         >
-          The Architecture of <br />
-          <span className="italic font-normal text-[#C59B27]">Heritage Silk</span> &amp; Zari
+          We have a secret to tell. <br />
+          <span className="italic font-normal text-[#78645D]">Can you keep a secret?</span>
         </m.h1>
 
         {/* Brand Mission Subtitle */}
@@ -60,10 +60,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DURATION.slow, ease: EASE_COUTURE, delay: 0.35 }}
-          className="mt-6 text-sm sm:text-base md:text-lg text-[#3D3833] max-w-2xl font-sans font-normal leading-relaxed"
+          className="mt-6 text-sm sm:text-base md:text-lg text-[#78645D] max-w-2xl font-sans font-normal leading-relaxed"
         >
-          Ancient Banarasi weaving traditions sculpted into bold architectural silhouettes.
-          Each heirloom creation is hand-embroidered over hundreds of artisan hours in our Siliguri atelier.
+          The freedom of being, without the pressure of becoming. Contemporary silhouettes designed for women who refuse to be defined by age, expectations, or a single version of themselves.
         </m.p>
 
         {/* Magnetic Action Buttons */}
@@ -71,23 +70,23 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DURATION.slow, ease: EASE_COUTURE, delay: 0.45 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
+          className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 font-sans"
         >
           {/* Primary Magnetic CTA */}
-          <Link to="/shop">
-            <MagneticButton className="px-8 py-4 bg-[#141210] text-[#FAF8F5] text-xs uppercase tracking-couture font-medium hover:bg-[#C59B27] hover:text-white shadow-luxury-md flex items-center group">
-              Explore The Collection
+          <Link to="/shop?collection=unbecoming">
+            <MagneticButton className="px-8 py-4 bg-[#1D1B1A] text-[#F7F4EF] text-xs uppercase tracking-couture font-medium hover:bg-[#78645D] hover:text-white shadow-luxury-md flex items-center group">
+              Discover Unbecoming
               <ArrowRight size={15} className="ml-2.5 transition-transform duration-300 group-hover:translate-x-1" />
             </MagneticButton>
           </Link>
 
           {/* Secondary Outline CTA */}
-          <Link to="/about#atelier">
+          <Link to="/about">
             <button
               type="button"
-              className="px-8 py-4 bg-transparent border border-[#141210] text-[#141210] text-xs uppercase tracking-couture font-medium hover:bg-[#141210] hover:text-[#FAF8F5] transition-colors duration-200 cursor-pointer"
+              className="px-8 py-4 bg-transparent border border-[#1D1B1A] text-[#1D1B1A] text-xs uppercase tracking-couture font-medium hover:bg-[#1D1B1A] hover:text-[#F7F4EF] transition-colors duration-200 cursor-pointer"
             >
-              Atelier Philosophy
+              The Brand Story
             </button>
           </Link>
         </m.div>
@@ -97,19 +96,19 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: DURATION.slow, ease: EASE_COUTURE, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-[#E7E2DA]/80 grid grid-cols-3 gap-6 sm:gap-12 text-center max-w-lg"
+          className="mt-16 pt-8 border-t border-[#E9DFD2] grid grid-cols-3 gap-6 sm:gap-12 text-center max-w-lg font-sans"
         >
           <div>
-            <p className="font-serif text-xl sm:text-2xl font-bold text-[#141210]">400+</p>
-            <p className="text-[10px] uppercase tracking-editorial text-[#6E675F] mt-0.5">Artisan Hours / Piece</p>
+            <p className="font-serif text-xl sm:text-2xl font-bold text-[#1D1B1A]">Col. 01</p>
+            <p className="text-[10px] uppercase tracking-editorial text-[#78645D] mt-0.5">Unbecoming Launch</p>
           </div>
           <div>
-            <p className="font-serif text-xl sm:text-2xl font-bold text-[#141210]">100%</p>
-            <p className="text-[10px] uppercase tracking-editorial text-[#6E675F] mt-0.5">Pure Mulberry &amp; Zari</p>
+            <p className="font-serif text-xl sm:text-2xl font-bold text-[#1D1B1A]">Prêt-à-Porter</p>
+            <p className="text-[10px] uppercase tracking-editorial text-[#78645D] mt-0.5">Affordable Luxury</p>
           </div>
           <div>
-            <p className="font-serif text-xl sm:text-2xl font-bold text-[#141210]">₹2,500</p>
-            <p className="text-[10px] uppercase tracking-editorial text-[#6E675F] mt-0.5">GST Slab Compliant</p>
+            <p className="font-serif text-xl sm:text-2xl font-bold text-[#1D1B1A]">5% &amp; 18%</p>
+            <p className="text-[10px] uppercase tracking-editorial text-[#78645D] mt-0.5">GST Slabs Compliant</p>
           </div>
         </m.div>
       </div>

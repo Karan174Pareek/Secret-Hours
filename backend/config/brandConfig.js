@@ -4,9 +4,12 @@
  */
 
 export const brandConfig = {
-  name: "ZARIYA Atelier",
-  legalName: "Zariya Haute Couture Private Limited",
-  tagline: "Architectural Minimalism Reimagined in Heritage Silk & Zari",
+  name: "SECRET HOURS",
+  legalName: "Secret Hours Apparel Private Limited",
+  tagline: "We have a secret to tell. Can you keep a secret?",
+  secondaryTagline: "A secret society of self-expression.",
+  brandHook: "Your secret. Your style. Your hours.",
+  packagingNote: "We trust you with our secret.",
   gstin: process.env.SELLER_GSTIN || "19AAAAZ0000A1Z5",
   state: "West Bengal",
   stateCode: process.env.SELLER_STATE_CODE || "19",
@@ -21,24 +24,24 @@ export const brandConfig = {
     country: "India",
   },
   contact: {
-    conciergeEmail: "concierge@zariyaatelier.com",
+    conciergeEmail: "concierge@secrethours.com",
     carePhone: "+91 98712 34567",
-    pressEmail: "press@zariyaatelier.com",
+    pressEmail: "press@secrethours.com",
     hours: "Monday to Saturday, 10:30 AM – 7:30 PM IST",
   },
   prepaidIncentive: {
     enabled: true,
-    discountPercentage: 5, // 5% instant discount on prepaid Razorpay orders to nudge away from COD
+    discountPercentage: 5,
     freeShipping: true,
   },
   codPolicy: {
     enabled: true,
-    maxAmountPaise: 5000000, // Maximum Rs 50,000 for COD
-    flatFeePaise: 15000, // Rs 150 handling fee
+    maxAmountPaise: 5000000,
+    flatFeePaise: 15000,
   },
   social: {
-    instagram: "https://instagram.com/zariyaatelier",
-    pinterest: "https://pinterest.com/zariyaatelier",
-    facebook: "https://facebook.com/zariyaatelier",
+    instagram: "https://instagram.com/secrethours",
+    pinterest: "https://pinterest.com/secrethours",
+    facebook: "https://facebook.com/secrethours",
   }
 };

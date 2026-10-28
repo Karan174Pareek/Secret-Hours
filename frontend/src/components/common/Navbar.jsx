@@ -23,26 +23,28 @@ export const Navbar = ({ cartCount = 0, wishlistCount = 0, onOpenCart }) => {
   }, [location.pathname]);
 
   const navLinks = [
-    { label: 'Collections', href: '/shop' },
-    { label: 'Haute Couture', href: '/shop?category=couture' },
-    { label: 'Pret & Drapes', href: '/shop?category=pret' },
-    { label: 'The Atelier', href: '/about' },
-    { label: 'Craftsmanship', href: '/about#craft' },
+    { label: 'Unbecoming (Col. 01)', href: '/shop?collection=unbecoming' },
+    { label: 'The Collection', href: '/shop' },
+    { label: 'Corsetry & Tailoring', href: '/shop?category=corsetry' },
+    { label: 'The Brand Story', href: '/about' },
+    { label: 'Secret Society', href: '/about#society' },
   ];
 
   return (
     <>
       {/* Top Announcement Ribbon */}
-      <div className="bg-[#141210] text-[#FAF8F5] text-[11px] tracking-couture uppercase py-2 px-4 text-center font-medium border-b border-[#C59B27]/30">
-        <span className="opacity-90">Bespoke Bridal Consultations &middot; Complimentary Domestic White-Glove Delivery</span>
+      <div className="bg-[#1D1B1A] text-[#F7F4EF] text-[11px] tracking-couture uppercase py-2 px-4 text-center font-medium border-b border-[#E9DFD2]/20">
+        <span className="opacity-95 font-sans">
+          "We have a secret to tell. Can you keep a secret?" &middot; Debut Collection 01 &middot; Complimentary Delivery
+        </span>
       </div>
 
       {/* Main Luxury Header */}
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'glass-atelier py-3.5 shadow-luxury-sm'
-            : 'bg-[#FAF8F5]/90 backdrop-blur-md py-5 border-b border-[#E7E2DA]'
+            ? 'bg-[#F7F4EF]/95 backdrop-blur-md py-3.5 shadow-luxury-sm border-b border-[#E9DFD2]'
+            : 'bg-[#F7F4EF]/90 backdrop-blur-md py-5 border-b border-[#E9DFD2]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -50,7 +52,7 @@ export const Navbar = ({ cartCount = 0, wishlistCount = 0, onOpenCart }) => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-[#141210] hover:text-[#C59B27] transition-colors cursor-pointer"
+            className="lg:hidden p-2 text-[#1D1B1A] hover:text-[#78645D] transition-colors cursor-pointer"
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -58,26 +60,26 @@ export const Navbar = ({ cartCount = 0, wishlistCount = 0, onOpenCart }) => {
           </button>
 
           {/* Left Navigation (Desktop) */}
-          <nav className="hidden lg:flex items-center space-x-8" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-7" aria-label="Main Navigation">
             {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.label}
                 to={link.href}
-                className="text-[12px] uppercase tracking-editorial text-[#3D3833] hover:text-[#C59B27] font-medium transition-colors duration-200 relative group py-1"
+                className="text-[11px] uppercase tracking-editorial text-[#1D1B1A] hover:text-[#78645D] font-medium transition-colors duration-200 relative group py-1 font-sans"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#C59B27] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#1D1B1A] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
 
-          {/* Central Monogram / Brand Emblem */}
+          {/* Central Wordmark */}
           <Link to="/" className="text-center group flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-3xl tracking-[0.22em] font-semibold text-[#141210] group-hover:text-[#C59B27] transition-colors duration-300">
-              ZARIYA
+            <span className="font-serif text-2xl sm:text-3xl tracking-[0.25em] font-semibold text-[#1D1B1A] group-hover:text-[#78645D] transition-colors duration-300">
+              SECRET HOURS
             </span>
-            <span className="text-[9px] uppercase tracking-[0.35em] text-[#6E675F] -mt-1 font-sans">
-              Atelier &middot; Siliguri
+            <span className="text-[8.5px] uppercase tracking-[0.35em] text-[#78645D] -mt-0.5 font-sans font-medium">
+              A Contemporary Womenswear Label
             </span>
           </Link>
 
@@ -158,11 +160,11 @@ export const Navbar = ({ cartCount = 0, wishlistCount = 0, onOpenCart }) => {
               <div>
                 <div className="flex items-center justify-between pb-6 border-b border-[#E7E2DA]">
                   <div>
-                    <span className="font-serif text-2xl font-bold tracking-[0.2em] text-[#141210]">
-                      ZARIYA
+                    <span className="font-serif text-2xl font-bold tracking-[0.2em] text-[#1D1B1A]">
+                      SECRET HOURS
                     </span>
-                    <span className="block text-[8px] uppercase tracking-[0.3em] text-[#6E675F]">
-                      Atelier &middot; Siliguri
+                    <span className="block text-[8px] uppercase tracking-[0.3em] text-[#78645D]">
+                      A Contemporary Womenswear Label
                     </span>
                   </div>
                   <button

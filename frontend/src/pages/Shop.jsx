@@ -97,32 +97,31 @@ export const Shop = () => {
   };
 
   const collections = [
-    { id: 'all', label: 'All Collections' },
-    { id: 'noor', label: 'The Royal Noor' },
-    { id: 'aaranya', label: 'Aaranya Metamorphosis' },
-    { id: 'vanya', label: 'Vanya Imperial Silk' },
-    { id: 'pret', label: 'Atelier Pret' },
+    { id: 'all', label: 'All Capsules' },
+    { id: 'unbecoming', label: 'Unbecoming (Col. 01)' },
+    { id: 'night', label: 'The Night Hours' },
+    { id: 'between', label: 'Between Us' },
   ];
 
   return (
     <PageTransition>
-      <div className="bg-[#FAF8F5] min-h-screen py-12">
+      <div className="bg-[#F7F4EF] min-h-screen py-12">
         {/* Editorial Collection Banner */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <div className="text-center max-w-3xl mx-auto pt-6">
-            <span className="text-[10px] uppercase tracking-couture text-[#C59B27] font-semibold block mb-2">
-              Atelier Haute Couture Catalog
+          <div className="text-center max-w-3xl mx-auto pt-6 font-sans">
+            <span className="text-[10px] uppercase tracking-couture text-[#78645D] font-semibold block mb-2">
+              Secret Hours Archive &middot; Affordable Luxury Prêt
             </span>
-            <h1 className="font-serif text-3xl sm:text-5xl text-[#141210] font-normal tracking-tight">
-              The Runway &amp; Pret Archive
+            <h1 className="font-serif text-3xl sm:text-5xl text-[#1D1B1A] font-normal tracking-tight">
+              The Silhouette &amp; Capsule Archive
             </h1>
-            <p className="mt-3 text-xs sm:text-sm text-[#6E675F] font-sans leading-relaxed">
-              Explore bespoke handcrafted silhouettes. Woven on traditional Indian handlooms and finished with bespoke architectural corsetry.
+            <p className="mt-3 text-xs sm:text-sm text-[#78645D] font-sans leading-relaxed">
+              A space for every version of you — including the ones the world hasn&rsquo;t met yet. Designed to dress beyond expectations and define femininity on your own terms.
             </p>
           </div>
 
           {/* Collection Pills Navigation */}
-          <div className="mt-8 flex items-center justify-center space-x-3 overflow-x-auto pb-2 scrollbar-none">
+          <div className="mt-8 flex items-center justify-center space-x-3 overflow-x-auto pb-2 scrollbar-none font-sans">
             {collections.map((col) => (
               <button
                 key={col.id}
@@ -130,8 +129,8 @@ export const Shop = () => {
                 onClick={() => handleFilterChange('collection', col.id)}
                 className={`px-5 py-2.5 rounded-full text-xs uppercase tracking-couture font-medium transition-all cursor-pointer whitespace-nowrap ${
                   currentCollection === col.id
-                    ? 'bg-[#141210] text-[#FAF8F5] shadow-luxury-sm'
-                    : 'bg-white text-[#3D3833] border border-[#E7E2DA] hover:border-[#C59B27]'
+                    ? 'bg-[#1D1B1A] text-[#F7F4EF] shadow-luxury-sm'
+                    : 'bg-white text-[#78645D] border border-[#E9DFD2] hover:border-[#1D1B1A]'
                 }`}
               >
                 {col.label}
@@ -146,10 +145,10 @@ export const Shop = () => {
                 key={cat.id}
                 type="button"
                 onClick={() => handleFilterChange('category', cat.id)}
-                className={`px-3.5 py-1.5 rounded-full text-[11px] uppercase tracking-couture font-medium transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full text-[11px] uppercase tracking-couture font-medium transition-all cursor-pointer whitespace-nowrap font-sans ${
                   currentCategory === cat.id
-                    ? 'bg-[#C59B27] text-white shadow-luxury-sm'
-                    : 'bg-white/80 text-[#6E675F] border border-[#E7E2DA] hover:border-[#C59B27] hover:text-[#141210]'
+                    ? 'bg-[#78645D] text-white shadow-luxury-sm'
+                    : 'bg-white/80 text-[#78645D] border border-[#E9DFD2] hover:border-[#1D1B1A] hover:text-[#1D1B1A]'
                 }`}
               >
                 {cat.label}
@@ -159,18 +158,18 @@ export const Shop = () => {
         </div>
 
         {/* Filter & Sort Controls Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="bg-white border border-[#E7E2DA] rounded-sm p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-luxury-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 font-sans">
+          <div className="bg-white border border-[#E9DFD2] rounded-sm p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-luxury-sm">
             {/* Search Input */}
             <div className="relative w-full md:w-72">
               <input
                 type="text"
-                placeholder="Search zari, silk, lehenga..."
+                placeholder="Search corset, slip dress, blazer..."
                 value={searchQuery}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-[#FAF8F5] border border-[#E7E2DA] text-xs text-[#141210] placeholder-[#A8A29E] rounded-sm focus:outline-none focus:border-[#C59B27]"
+                className="w-full pl-9 pr-4 py-2 bg-[#F7F4EF] border border-[#E9DFD2] text-xs text-[#1D1B1A] placeholder-[#78645D]/60 rounded-sm focus:outline-none focus:border-[#1D1B1A]"
               />
-              <Search size={14} className="absolute left-3 top-2.5 text-[#6E675F]" />
+              <Search size={14} className="absolute left-3 top-2.5 text-[#78645D]" />
               {searchQuery && (
                 <button
                   type="button"

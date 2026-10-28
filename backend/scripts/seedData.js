@@ -4,328 +4,343 @@ import connectDB from '../config/db.js';
 import Product from '../models/Product.js';
 import Pincode from '../models/Pincode.js';
 import AdminUser from '../models/AdminUser.js';
+import Category from '../models/Category.js';
 import { determineGstRate } from '../services/gstEngine.js';
 
 dotenv.config();
 
+const CATEGORIES = [
+  { name: 'Structural Corsetry', slug: 'corsetry', description: 'Architectural bodices and sculpted steel-boned corsets', displayOrder: 1 },
+  { name: 'Fluid Drapes & Slips', slug: 'slips', description: 'Bias-cut mulberry silk slips and draped cowl gowns', displayOrder: 2 },
+  { name: 'Tailored Rebel Outerwear', slug: 'outerwear', description: 'Oversized structured blazers and cropped statement trenches', displayOrder: 3 },
+  { name: 'Contradiction Separates', slug: 'separates', description: 'Wide-leg pleat trousers, organza shirts, and fine knitwear', displayOrder: 4 },
+  { name: 'Atelier Accessories', slug: 'accessories', description: 'Discreet minimal leather bags, stoles, and printed silk scarves', displayOrder: 5 },
+];
+
 const PRODUCTS = [
-  // --- Collection 1: The Royal Noor Bridal ---
+  // --- Debut Collection 01: UNBECOMING ---
   {
-    title: 'Chand-Taara Royal Zardozi Bridal Lehenga',
-    slug: 'chand-taara-bridal-lehenga',
-    collectionName: 'The Royal Noor',
-    category: 'couture',
-    basePricePaise: 14500000, // Rs 1,45,000
-    hsn: '6204',
-    fabric: 'Pure Mulberry Silk with Electroplated Real Silver Zari',
-    care: 'Specialist dry clean only. Store wrapped in pure unbleached muslin with natural cedar sachet.',
-    craftHours: 420,
-    description: 'An architectural heirloom bridal masterpiece featuring antique beaten gold wire embroidery (zardozi), marodi threadwork, and hand-cut sequins draped over a 16-kali sculpted mulberry silk skirt.',
+    title: 'The Unbecoming Sculpted Corset',
+    slug: 'the-unbecoming-sculpted-corset',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'corsetry',
+    basePricePaise: 1450000, // Rs 14,500 (18% GST)
+    hsn: '6211',
+    fabric: 'Structured Wool-Crepe & Internal Steel Boning',
+    care: 'Specialist dry clean only. Store flat in bespoke garment pouch.',
+    craftHours: 120,
+    description: 'An architectural sculpted corset embodying the tension between restraint and freedom. Features contoured boning channels, clean square neckline, and concealed back eyelet closure with contrast edge finishing.',
     images: [
-      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
     sizes: [
-      { size: 'XS', stock: 2 },
-      { size: 'S', stock: 4 },
-      { size: 'M', stock: 3 },
-      { size: 'L', stock: 2 },
+      { size: 'XS', stock: 4 },
+      { size: 'S', stock: 6 },
+      { size: 'M', stock: 5 },
+      { size: 'L', stock: 3 },
       { size: 'Custom Bespoke', stock: 10 },
     ],
     colors: [
-      { name: 'Imperial Gold & Ivory', hex: '#C59B27', modelColor: '#C59B27' },
-      { name: 'Royal Crimson', hex: '#8B1E1E', modelColor: '#8B1E1E' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Warm Ivory', hex: '#F7F4EF', modelColor: '#F7F4EF' },
     ],
     isFeatured: true,
   },
   {
-    title: 'Gul-e-Bahar Hand-Embroidered Silk Ensemble',
-    slug: 'gul-e-bahar-silk-ensemble',
-    collectionName: 'The Royal Noor',
-    category: 'couture',
-    basePricePaise: 11500000, // Rs 1,15,000
+    title: 'The Contradiction Bias-Cut Silk Slip',
+    slug: 'the-contradiction-bias-cut-silk-slip',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'slips',
+    basePricePaise: 1850000, // Rs 18,500 (18% GST)
     hsn: '6204',
-    fabric: 'Raw Silk & Fine French Wire',
-    care: 'Dry clean only. Avoid spraying perfumes directly on metal zari work.',
-    craftHours: 360,
-    description: 'A tribute to Mughal botanicals rendered in micro-pearls, tilla cord, and basra pearl detailing across a tailored bodice and flared volume skirt.',
+    fabric: '100% Pure Mulberry Silk Satin',
+    care: 'Dry clean in specialized solvent. Iron reverse on low silk setting.',
+    craftHours: 85,
+    description: 'A fluid silhouette that moves effortlessly against the skin. Cut on the true bias with delicate double-spaghetti straps, low draped cowl back, and raw-edged hand-finished hemline.',
     images: [
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
     sizes: [
-      { size: 'S', stock: 3 },
+      { size: 'XS', stock: 3 },
+      { size: 'S', stock: 7 },
+      { size: 'M', stock: 6 },
+      { size: 'L', stock: 4 },
+    ],
+    colors: [
+      { name: 'Soft Champagne', hex: '#E9DFD2', modelColor: '#E9DFD2' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Muted Mocha', hex: '#78645D', modelColor: '#78645D' },
+    ],
+    isFeatured: true,
+  },
+  {
+    title: 'Midnight Rebel Oversized Tailored Blazer',
+    slug: 'midnight-rebel-oversized-tailored-blazer',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'outerwear',
+    basePricePaise: 2400000, // Rs 24,000 (18% GST)
+    hsn: '6204',
+    fabric: 'Double-Faced Italian Wool & Bemberg Silk Cupro Lining',
+    care: 'Dry clean only. Hang on wide contoured wooden hanger.',
+    craftHours: 110,
+    description: 'Sharply tailored masculine shoulder silhouette softened with deep front break. Features elongated peak lapels, horn buttons, interior passport pocket, and subtle contrast edge topstitching.',
+    images: [
+      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80',
+    ],
+    sizes: [
+      { size: 'S', stock: 4 },
       { size: 'M', stock: 5 },
       { size: 'L', stock: 3 },
     ],
     colors: [
-      { name: 'Antique Rose', hex: '#B87D7B', modelColor: '#B87D7B' },
-      { name: 'Onyx Gold', hex: '#141210', modelColor: '#141210' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Muted Mocha', hex: '#78645D', modelColor: '#78645D' },
     ],
     isFeatured: true,
   },
   {
-    title: 'Shahana Velvet Zardozi Ensemble',
-    slug: 'shahana-velvet-ensemble',
-    collectionName: 'The Royal Noor',
-    category: 'couture',
-    basePricePaise: 18500000, // Rs 1,85,000
+    title: 'The Inside Joke Cropped Trench',
+    slug: 'the-inside-joke-cropped-trench',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'outerwear',
+    basePricePaise: 1650000, // Rs 16,500 (18% GST)
     hsn: '6204',
-    fabric: 'Micro-Velvet & Tissue Dupatta',
-    care: 'Professional couture dry clean only.',
-    craftHours: 480,
-    description: 'Heavy architectural velvet lehenga structured with internal horsehair braid and weighted with hand-beaded dabka border motifs.',
-    images: [
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
-    sizes: [
-      { size: 'S', stock: 2 },
-      { size: 'M', stock: 2 },
-      { size: 'L', stock: 1 },
-    ],
-    colors: [
-      { name: 'Deep Aubergine', hex: '#3B1E2B', modelColor: '#3B1E2B' },
-    ],
-    isFeatured: false,
-  },
-  {
-    title: 'Mumtaz Pale Gold Zari Bridal Lehenga',
-    slug: 'mumtaz-pale-gold-bridal-lehenga',
-    collectionName: 'The Royal Noor',
-    category: 'couture',
-    basePricePaise: 21000000, // Rs 2,10,000
-    hsn: '6204',
-    fabric: 'Pure Tissue Brocade with 24k Gold Dip Plating',
-    care: 'Vacuum clean by certified couture conservators.',
-    craftHours: 520,
-    description: 'The pinnacle of ZARIYA bridal couture. Crafted from hand-woven tissue brocade and embellished with uncut stone and pitta metal embroidery.',
-    images: [
-      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
-    sizes: [
-      { size: 'S', stock: 1 },
-      { size: 'M', stock: 2 },
-      { size: 'Custom Bespoke', stock: 5 },
-    ],
-    colors: [
-      { name: 'Champagne Gold', hex: '#DFC896', modelColor: '#DFC896' },
-    ],
-    isFeatured: true,
-  },
-
-  // --- Collection 2: Aaranya Metamorphosis (Draped Sarees) ---
-  {
-    title: 'Aaranya Pleated Metallic Tissue Saree',
-    slug: 'metallic-tissue-draped-saree',
-    collectionName: 'Aaranya Metamorphosis',
-    category: 'sarees',
-    basePricePaise: 4200000, // Rs 42,000
-    hsn: '6214',
-    fabric: 'Metallic Tissue & Japanese Pleated Organza',
-    care: 'Do not iron directly. Steam only on reverse with protective cloth.',
-    craftHours: 120,
-    description: 'Pre-draped statement saree engineered with micro-accordion pleating that cascades gracefully into an ethereal metallic palla.',
-    images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
-    sizes: [
-      { size: 'One Size / Pre-Draped', stock: 8 },
-      { size: 'Custom Waist', stock: 5 },
-    ],
-    colors: [
-      { name: 'Liquid Platinum', hex: '#D1D5DB', modelColor: '#D1D5DB' },
-      { name: 'Burnished Copper', hex: '#B45309', modelColor: '#B45309' },
-    ],
-    isFeatured: true,
-  },
-  {
-    title: 'Maya Emerald Organza Cocktail Saree',
-    slug: 'maya-emerald-organza-saree',
-    collectionName: 'Aaranya Metamorphosis',
-    category: 'sarees',
-    basePricePaise: 3850000, // Rs 38,500
-    hsn: '6214',
-    fabric: 'Translucent Silk Organza with Gota Patti Border',
-    care: 'Dry clean only. Steam with low temperature.',
+    fabric: 'Weather-Resistant Compact Cotton Twill',
+    care: 'Professional dry clean only.',
     craftHours: 95,
-    description: 'Weightless hand-woven silk organza saree in deep jewel emerald, framed with delicate cutwork gota patti and hand-sewn glass crystals.',
+    description: 'A playful, rebellious reinterpretation of classic British trench architecture. Cropped at high waistline with exaggerated gun flaps, double-buckle storm collar, and tortoiseshell horn buttons.',
     images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
     sizes: [
-      { size: 'Standard (6.5 Metres)', stock: 6 },
-    ],
-    colors: [
-      { name: 'Jewel Emerald', hex: '#064E3B', modelColor: '#064E3B' },
-    ],
-    isFeatured: false,
-  },
-  {
-    title: 'Devnaagari Sculpted Corset & Draped Saree',
-    slug: 'sculpted-corset-palazzo-set',
-    collectionName: 'Aaranya Metamorphosis',
-    category: 'sarees',
-    basePricePaise: 4800000, // Rs 48,000
-    hsn: '6211',
-    fabric: 'Raw Silk Corsetry & Draped Crepe Silk',
-    care: 'Dry clean only.',
-    craftHours: 160,
-    description: 'A contemporary silhouette combining a boned structural corset blouse with a fluid, fluid-movement pre-stitched draped skirt saree.',
-    images: [
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
-    sizes: [
-      { size: 'XS', stock: 2 },
-      { size: 'S', stock: 4 },
-      { size: 'M', stock: 3 },
+      { size: 'XS', stock: 3 },
+      { size: 'S', stock: 5 },
+      { size: 'M', stock: 4 },
       { size: 'L', stock: 2 },
     ],
     colors: [
-      { name: 'Midnight Onyx', hex: '#141210', modelColor: '#141210' },
-      { name: 'Ivory Zari', hex: '#FAF8F5', modelColor: '#FAF8F5' },
+      { name: 'Soft Champagne', hex: '#E9DFD2', modelColor: '#E9DFD2' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
     ],
     isFeatured: true,
   },
   {
-    title: 'Tarunya Concept Pleated Pant Saree',
-    slug: 'tarunya-pant-saree',
-    collectionName: 'Aaranya Metamorphosis',
-    category: 'sarees',
-    basePricePaise: 3200000, // Rs 32,000
-    hsn: '6214',
-    fabric: 'Georgette & Crepe de Chine',
-    care: 'Dry clean only.',
-    craftHours: 85,
-    description: 'Modern red-carpet crossover pant saree with integrated sash pleats and embroidered waist cincher belt.',
+    title: 'Soft Champagne Fluid Pleat Trouser',
+    slug: 'soft-champagne-fluid-pleat-trouser',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'separates',
+    basePricePaise: 1100000, // Rs 11,000 (18% GST)
+    hsn: '6204',
+    fabric: 'Heavyweight Silk-Viscose Fluid Crepe',
+    care: 'Dry clean only. Cool iron.',
+    craftHours: 65,
+    description: 'High-waisted wide-leg trousers tailored with deep inverted front pleats, hidden in-seam pockets, and an effortlessly relaxed silhouette that falls with liquid grace.',
     images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
+    sizes: [
+      { size: 'XS', stock: 4 },
+      { size: 'S', stock: 6 },
+      { size: 'M', stock: 6 },
+      { size: 'L', stock: 3 },
+    ],
+    colors: [
+      { name: 'Soft Champagne', hex: '#E9DFD2', modelColor: '#E9DFD2' },
+      { name: 'Warm Ivory', hex: '#F7F4EF', modelColor: '#F7F4EF' },
+    ],
+    isFeatured: false,
+  },
+  {
+    title: 'The Unlearning Sheer Organza Shirt',
+    slug: 'the-unlearning-sheer-organza-shirt',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'separates',
+    basePricePaise: 980000, // Rs 9,800 (18% GST)
+    hsn: '6206',
+    fabric: '100% Pure Mulberry Silk Organza',
+    care: 'Dry clean only. Steam delicately on reverse.',
+    craftHours: 70,
+    description: 'Translucent button-down shirt with exaggerated French cuffs and architectural pointed collar. Explores the boundary between what is revealed and what is kept private.',
+    images: [
+      'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+    ],
+    sizes: [
+      { size: 'XS', stock: 2 },
+      { size: 'S', stock: 5 },
+      { size: 'M', stock: 4 },
+      { size: 'L', stock: 2 },
+    ],
+    colors: [
+      { name: 'Warm Ivory', hex: '#F7F4EF', modelColor: '#F7F4EF' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+    ],
+    isFeatured: false,
+  },
+
+  // --- Capsule 02: THE NIGHT HOURS ---
+  {
+    title: 'The Night Hours Draped Velvet Gown',
+    slug: 'the-night-hours-draped-velvet-gown',
+    collectionName: 'The Night Hours',
+    category: 'slips',
+    basePricePaise: 3200000, // Rs 32,000 (18% GST)
+    hsn: '6204',
+    fabric: 'Silk Micro-Velvet & Liquid Satin Lining',
+    care: 'Specialist couture dry clean only.',
+    craftHours: 140,
+    description: 'Sculptural column evening gown with an open cowl back and high side slit. Holds a subtle rebellious attitude for the night hours when you dress solely for yourself.',
+    images: [
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+    ],
     sizes: [
       { size: 'S', stock: 3 },
       { size: 'M', stock: 4 },
       { size: 'L', stock: 2 },
     ],
     colors: [
-      { name: 'Burnt Sienna', hex: '#9A3412', modelColor: '#9A3412' },
-    ],
-    isFeatured: false,
-  },
-
-  // --- Collection 3: Vanya Imperial Silk (Menswear & Pret) ---
-  {
-    title: 'Vanya Imperial Raw Silk Embroidered Sherwani',
-    slug: 'vanya-raw-silk-sherwani',
-    collectionName: 'Vanya Imperial Silk',
-    category: 'menswear',
-    basePricePaise: 8500000, // Rs 85,000
-    hsn: '6203',
-    fabric: 'Pure Hand-Spun Matka Silk & Gold Wire',
-    care: 'Professional dry clean only.',
-    craftHours: 280,
-    description: 'Architecturally tailored ceremonial sherwani with tonal resham embroidery, customized horn buttons, and handcrafted silk churidar.',
-    images: [
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
-    sizes: [
-      { size: '38 (S)', stock: 3 },
-      { size: '40 (M)', stock: 5 },
-      { size: '42 (L)', stock: 3 },
-      { size: '44 (XL)', stock: 2 },
-    ],
-    colors: [
-      { name: 'Raw Ivory', hex: '#FAF8F5', modelColor: '#FAF8F5' },
-      { name: 'Regal Navy', hex: '#1E293B', modelColor: '#1E293B' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Muted Mocha', hex: '#78645D', modelColor: '#78645D' },
     ],
     isFeatured: true,
   },
   {
-    title: 'Zaffran Matka Silk Asymmetric Bandhgala',
-    slug: 'zaffran-asymmetric-bandhgala',
-    collectionName: 'Vanya Imperial Silk',
-    category: 'menswear',
-    basePricePaise: 4600000, // Rs 46,000
-    hsn: '6203',
-    fabric: 'Matka Silk with Cast Brass Buttons',
-    care: 'Dry clean only.',
-    craftHours: 140,
-    description: 'Sculpted asymmetric wrap bandhgala with subtle geometric shoulder tucks and concealed placket.',
+    title: 'The Unapologetic Contour Bodysuit',
+    slug: 'the-unapologetic-contour-bodysuit',
+    collectionName: 'The Night Hours',
+    category: 'corsetry',
+    basePricePaise: 240000, // Rs 2,400 (5% GST Slab Tier: <= Rs 2,500)
+    hsn: '6114',
+    fabric: 'Compression Stretch Satin & Sheer Mesh Paneling',
+    care: 'Gentle hand wash cold or delicate dry clean.',
+    craftHours: 40,
+    description: 'Sculpted contour bodysuit engineered for seamless versatility. Transitions effortlessly from under oversized tailoring in daylight to after-hours statement wear.',
     images: [
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
-    sizes: [
-      { size: '38', stock: 2 },
-      { size: '40', stock: 4 },
-      { size: '42', stock: 2 },
-    ],
-    colors: [
-      { name: 'Saffron Rust', hex: '#C2410C', modelColor: '#C2410C' },
-      { name: 'Slate Charcoal', hex: '#334155', modelColor: '#334155' },
-    ],
-    isFeatured: false,
-  },
-
-  // --- GST 5% Boundary Demonstration Pieces (<= Rs 2,500) ---
-  {
-    title: 'Imperial Chanderi Silk Tunic Ensemble',
-    slug: 'chanderi-handloom-kurta-ensemble',
-    collectionName: 'Atelier Pret',
-    category: 'pret',
-    basePricePaise: 240000, // Rs 2,400 (<= Rs 2,500 => 5% GST!)
-    hsn: '6204',
-    fabric: 'Handloom Chanderi Silk with Zari Edge',
-    care: 'Hand wash cold with gentle silk detergent.',
-    craftHours: 35,
-    description: 'Lightweight handloom tunic ensemble crafted in Madhya Pradesh Chanderi clusters, adorned with a delicate woven zari border.',
-    images: [
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
-    ],
-    model3d: null,
     sizes: [
       { size: 'XS', stock: 5 },
-      { size: 'S', stock: 10 },
-      { size: 'M', stock: 12 },
-      { size: 'L', stock: 8 },
+      { size: 'S', stock: 8 },
+      { size: 'M', stock: 8 },
+      { size: 'L', stock: 4 },
     ],
     colors: [
-      { name: 'Pearl Sand', hex: '#E7E5E4', modelColor: '#E7E5E4' },
-      { name: 'Muted Terracotta', hex: '#A16207', modelColor: '#A16207' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Warm Ivory', hex: '#F7F4EF', modelColor: '#F7F4EF' },
+    ],
+    isFeatured: true,
+  },
+
+  // --- Capsule 03: BETWEEN US (Pret & Essentials) ---
+  {
+    title: 'Muted Mocha Rebellious Rib Knit Top',
+    slug: 'muted-mocha-rebellious-rib-knit-top',
+    collectionName: 'Between Us',
+    category: 'separates',
+    basePricePaise: 220000, // Rs 2,200 (5% GST Slab Tier: <= Rs 2,500)
+    hsn: '6109',
+    fabric: 'Fine Merino Wool & Cashmere Rib Blend',
+    care: 'Hand wash cold with wool detergent. Dry flat.',
+    craftHours: 35,
+    description: 'Second-skin asymmetrical rib-knit top with extended thumbhole sleeves and slash-neckline detail. Perfectly balances effortless comfort with quiet attitude.',
+    images: [
+      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+    ],
+    sizes: [
+      { size: 'XS', stock: 6 },
+      { size: 'S', stock: 10 },
+      { size: 'M', stock: 8 },
+      { size: 'L', stock: 5 },
+    ],
+    colors: [
+      { name: 'Muted Mocha', hex: '#78645D', modelColor: '#78645D' },
+      { name: 'Soft Champagne', hex: '#E9DFD2', modelColor: '#E9DFD2' },
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
     ],
     isFeatured: true,
   },
   {
-    title: 'Pashmina & Zari Border Evening Stole',
-    slug: 'pashmina-zari-evening-stole',
-    collectionName: 'Atelier Pret',
-    category: 'pret',
-    basePricePaise: 220000, // Rs 2,200 (<= Rs 2,500 => 5% GST!)
+    title: 'The Confession Silk Bandana Scarf',
+    slug: 'the-confession-silk-bandana-scarf',
+    collectionName: 'Between Us',
+    category: 'accessories',
+    basePricePaise: 180000, // Rs 1,800 (5% GST Slab Tier: <= Rs 2,500)
     hsn: '6214',
-    fabric: 'Fine Cashmere-Silk Blend & Zari Fringe',
+    fabric: '100% Silk Twill with Hand-Rolled Edges',
     care: 'Dry clean only.',
-    craftHours: 24,
-    description: 'Hand-woven ultra-fine evening stole featuring traditional paisley motifs and hand-knotted zari tassel edges.',
+    craftHours: 25,
+    description: 'Printed silk twill scarf with cryptic typography and Secret Hours micro-motifs. Can be styled tied around the collar, hair, or handbag strap.',
     images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
     ],
-    model3d: null,
     sizes: [
-      { size: 'One Size (2.2m x 0.8m)', stock: 25 },
+      { size: 'One Size (55x55cm)', stock: 25 },
     ],
     colors: [
-      { name: 'Zari Champagne', hex: '#CA8A04', modelColor: '#CA8A04' },
-      { name: 'Charcoal Black', hex: '#1C1917', modelColor: '#1C1917' },
+      { name: 'Midnight & Champagne', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Mocha & Ivory', hex: '#78645D', modelColor: '#78645D' },
     ],
     isFeatured: true,
+  },
+  {
+    title: 'The Secret Society Leather Shoulder Bag',
+    slug: 'the-secret-society-leather-shoulder-bag',
+    collectionName: 'Between Us',
+    category: 'accessories',
+    basePricePaise: 1250000, // Rs 12,500 (18% GST)
+    hsn: '4202',
+    fabric: 'Full-Grain Italian Calf Leather & Brushed Palladium Hardware',
+    care: 'Store in protective flannel dust bag. Wipe with clean dry cloth.',
+    craftHours: 55,
+    description: 'Sleek crescent shoulder bag with discreet blind-debossed monogram and magnetic closure. Conceals an interior pocket foil-stamped with: "We trust you with our secret."',
+    images: [
+      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80',
+    ],
+    sizes: [
+      { size: 'One Size', stock: 8 },
+    ],
+    colors: [
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Muted Mocha', hex: '#78645D', modelColor: '#78645D' },
+    ],
+    isFeatured: true,
+  },
+  {
+    title: 'Asymmetrical Sculpted Midi Skirt',
+    slug: 'asymmetrical-sculpted-midi-skirt',
+    collectionName: 'Unbecoming (Col. 01)',
+    category: 'separates',
+    basePricePaise: 850000, // Rs 8,500 (18% GST)
+    hsn: '6204',
+    fabric: 'Structured Japanese Cupro-Twill',
+    care: 'Dry clean only.',
+    craftHours: 60,
+    description: 'Flattering bias-cut midi skirt with diagonal seam architecture and subtle flare that moves with kinetic fluidity at every step.',
+    images: [
+      'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80',
+    ],
+    sizes: [
+      { size: 'XS', stock: 3 },
+      { size: 'S', stock: 5 },
+      { size: 'M', stock: 6 },
+      { size: 'L', stock: 3 },
+    ],
+    colors: [
+      { name: 'Midnight Black', hex: '#1D1B1A', modelColor: '#1D1B1A' },
+      { name: 'Soft Champagne', hex: '#E9DFD2', modelColor: '#E9DFD2' },
+    ],
+    isFeatured: false,
   },
 ];
 
@@ -343,7 +358,7 @@ const PINCODES = [
   { pincode: '302001', city: 'C-Scheme / Jaipur', state: 'Rajasthan', stateCode: '08', isServiceable: true, isCodAllowed: true, estimatedDays: 3 },
   { pincode: '600002', city: 'Anna Salai / Chennai', state: 'Tamil Nadu', stateCode: '33', isServiceable: true, isCodAllowed: true, estimatedDays: 3 },
   { pincode: '380009', city: 'Navrangpura / Ahmedabad', state: 'Gujarat', stateCode: '24', isServiceable: true, isCodAllowed: true, estimatedDays: 3 },
-  { pincode: '190001', city: 'Lal Chowk / Srinagar', state: 'Jammu & Kashmir', stateCode: '01', isServiceable: true, isCodAllowed: false, estimatedDays: 5 }, // Prepaid only demo
+  { pincode: '190001', city: 'Lal Chowk / Srinagar', state: 'Jammu & Kashmir', stateCode: '01', isServiceable: true, isCodAllowed: false, estimatedDays: 5 },
 ];
 
 async function seed() {
@@ -353,31 +368,45 @@ async function seed() {
   await Product.deleteMany({});
   await Pincode.deleteMany({});
   await AdminUser.deleteMany({});
+  await Category.deleteMany({});
 
-  console.log('[Seed] Seeding 12 couture products...');
+  console.log('[Seed] Seeding 5 official Secret Hours categories...');
+  await Category.insertMany(CATEGORIES);
+
+  console.log('[Seed] Seeding 12 contemporary Secret Hours garments...');
   for (const p of PRODUCTS) {
     const rate = determineGstRate(p.basePricePaise);
     await Product.create({ ...p, gstRate: rate });
   }
 
-  console.log('[Seed] Seeding pincodes allow/deny list...');
+  console.log('[Seed] Seeding pincodes list...');
   await Pincode.insertMany(PINCODES);
 
-  console.log('[Seed] Seeding administrator account...');
-  const { salt, passwordHash } = AdminUser.hashPassword('ZariyaAtelier2026!');
+  console.log('[Seed] Seeding administrator accounts...');
+  const admin1 = AdminUser.hashPassword('SecretHours2026!');
+  await AdminUser.create({
+    email: 'admin@secrethours.com',
+    passwordHash: admin1.passwordHash,
+    salt: admin1.salt,
+    name: 'Secret Hours Director',
+    role: 'admin',
+  });
+
+  const admin2 = AdminUser.hashPassword('ZariyaAtelier2026!');
   await AdminUser.create({
     email: 'admin@zariyaatelier.com',
-    passwordHash,
-    salt,
+    passwordHash: admin2.passwordHash,
+    salt: admin2.salt,
     name: 'Atelier Director',
     role: 'admin',
   });
 
   console.log('\n========================================');
-  console.log('✅ SEEDING COMPLETE');
-  console.log('12 Products across 3 Collections seeded');
-  console.log('11 Key Pincodes seeded (including prepaid-only 190001)');
-  console.log('Admin Account: admin@zariyaatelier.com (Pass: ZariyaAtelier2026!)');
+  console.log('✅ SECRET HOURS SEEDING COMPLETE');
+  console.log('12 Pieces across Unbecoming, Night Hours & Between Us seeded');
+  console.log('5 Categories seeded (Corsetry, Slips, Outerwear, Separates, Accessories)');
+  console.log('14 Pincodes seeded (Siliguri, Kolkata, Delhi, Mumbai, etc.)');
+  console.log('Admin: admin@secrethours.com (Pass: SecretHours2026!)');
   console.log('========================================\n');
 
   process.exit(0);

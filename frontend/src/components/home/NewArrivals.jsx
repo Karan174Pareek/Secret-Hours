@@ -7,55 +7,55 @@ import Reveal from '../../motion/Reveal';
 export const SAMPLE_PRODUCTS = [
   {
     id: 'prod-01',
-    slug: 'chand-taara-bridal-lehenga',
-    title: 'Chand-Taara Royal Zardozi Lehenga',
-    collection: 'The Royal Noor',
-    category: 'Couture Bridal',
-    basePricePaise: 14500000, // Rs 1,45,000 (Taxable)
-    hsn: '6204',
-    gstRate: 0.18, // 18% since > Rs 2,500
-    image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80',
-    fabric: 'Pure Mulberry Silk with Real Zari',
-    tag: 'Runway Exclusive',
+    slug: 'the-unbecoming-sculpted-corset',
+    title: 'The Unbecoming Sculpted Corset',
+    collection: 'Unbecoming (Col. 01)',
+    category: 'Structural Corsetry',
+    basePricePaise: 1450000, // Rs 14,500
+    hsn: '6211',
+    gstRate: 0.18,
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+    fabric: 'Structured Wool-Crepe & Internal Steel Boning',
+    tag: 'Debut Signature',
   },
   {
     id: 'prod-02',
-    slug: 'metallic-tissue-draped-saree',
-    title: 'Aaranya Pleated Metallic Tissue Saree',
-    collection: 'Aaranya Metamorphosis',
-    category: 'Draped Sarees',
-    basePricePaise: 4200000, // Rs 42,000 (Taxable)
-    hsn: '6214',
+    slug: 'the-contradiction-bias-cut-silk-slip',
+    title: 'The Contradiction Bias-Cut Silk Slip',
+    collection: 'Unbecoming (Col. 01)',
+    category: 'Fluid Drapes & Slips',
+    basePricePaise: 1850000, // Rs 18,500
+    hsn: '6204',
     gstRate: 0.18,
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
-    fabric: 'Hand-Pleated Organza & Metallic Tissue',
-    tag: 'Bestseller',
+    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80',
+    fabric: '100% Pure Mulberry Silk Satin',
+    tag: 'Liquid Drape',
   },
   {
     id: 'prod-03',
-    slug: 'chanderi-handloom-kurta-ensemble',
-    title: 'Imperial Chanderi Silk Tunic Ensemble',
-    collection: 'Atelier Pret',
-    category: 'Pret Separates',
-    basePricePaise: 240000, // Rs 2,400 (Taxable <= Rs 2,500 => 5% GST!)
-    hsn: '6204',
-    gstRate: 0.05, // 5% GST boundary showcase!
-    image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
-    fabric: 'Hand-Spun Chanderi Silk & Zari Border',
-    tag: '5% GST Slab',
+    slug: 'muted-mocha-rebellious-rib-knit-top',
+    title: 'Muted Mocha Rebellious Rib Knit Top',
+    collection: 'Between Us',
+    category: 'Contradiction Separates',
+    basePricePaise: 220000, // Rs 2,200 (<= Rs 2,500 attracts 5% GST!)
+    hsn: '6109',
+    gstRate: 0.05,
+    image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80',
+    fabric: 'Fine Merino Wool & Cashmere Rib Blend',
+    tag: '5% GST Tier',
   },
   {
     id: 'prod-04',
-    slug: 'sculpted-corset-palazzo-set',
-    title: 'Sculpted Zardozi Corset & Silk Palazzo',
-    collection: 'Modern Couture',
-    category: 'Contemporary Drapes',
-    basePricePaise: 2850000, // Rs 28,500 (Taxable)
-    hsn: '6211',
+    slug: 'midnight-rebel-oversized-tailored-blazer',
+    title: 'Midnight Rebel Oversized Tailored Blazer',
+    collection: 'Unbecoming (Col. 01)',
+    category: 'Tailored Outerwear',
+    basePricePaise: 2400000, // Rs 24,000
+    hsn: '6204',
     gstRate: 0.18,
-    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
-    fabric: 'Raw Silk & Fine Cutdana Beadwork',
-    tag: 'Limited Edition',
+    image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
+    fabric: 'Double-Faced Italian Wool & Silk Cupro',
+    tag: 'Tailored Rebel',
   },
 ];
 
@@ -80,7 +80,7 @@ export const NewArrivals = ({ onAddToCart }) => {
             gstRate: p.gstRate,
             image: p.images && p.images[0] ? p.images[0] : p.image,
             fabric: p.fabric,
-            tag: p.isFeatured ? 'Runway Exclusive' : 'New Arrival',
+            tag: p.isFeatured ? 'Signature Piece' : 'New Arrival',
           }));
           setProducts(formatted);
         }
@@ -94,16 +94,16 @@ export const NewArrivals = ({ onAddToCart }) => {
     <section className="py-24 bg-[#FFFFFF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16 font-sans">
           <Reveal>
-            <span className="text-xs uppercase tracking-couture text-[#C59B27] font-semibold block mb-2">
-              New Season Drops
+            <span className="text-xs uppercase tracking-couture text-[#78645D] font-semibold block mb-2">
+              Collection 01: Unbecoming
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl text-[#141210] font-normal tracking-tight">
-              Autumn Runway Arrivals
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#1D1B1A] font-normal tracking-tight">
+              Curated Silhouettes &amp; Drops
             </h2>
-            <p className="mt-4 text-xs sm:text-sm text-[#6E675F] font-sans leading-relaxed">
-              Explore our latest limited-batch creations. Hand-draped and embellished by master craftsmen.
+            <p className="mt-4 text-xs sm:text-sm text-[#78645D] font-sans leading-relaxed">
+              A space for every version of you — including the ones the world hasn&rsquo;t met yet.
             </p>
           </Reveal>
         </div>

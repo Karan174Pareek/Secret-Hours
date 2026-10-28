@@ -399,8 +399,9 @@ export const ProductDetail = () => {
                     </button>
                     {openAccordions.shipping && (
                       <div className="pb-4 text-xs text-[#6E675F] leading-relaxed font-sans font-light space-y-1">
-                        <p>Complimentary tamper-proof insured express transit across all major Indian cities.</p>
-                        <p>Includes one round of complimentary custom fitting alterations through our Siliguri flagship atelier within 14 days of delivery.</p>
+                        <p>Complimentary tamper-proof express delivery across all serviceable Indian pincodes.</p>
+                        <p>Delivered in minimal matte packaging with a discreet card reading: &ldquo;We trust you with our secret.&rdquo;</p>
+                        <p>Includes one round of complimentary custom fitting alterations through our Siliguri atelier within 14 days of delivery.</p>
                       </div>
                     )}
                   </div>

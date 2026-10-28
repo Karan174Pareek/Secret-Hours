@@ -44,28 +44,28 @@ export const OrderConfirmation = () => {
               <CheckCircle2 size={36} strokeWidth={1.5} />
             </div>
 
-            <span className="text-[10px] uppercase tracking-couture text-[#C59B27] font-semibold block mb-1">
-              Atelier Order Confirmed
+            <span className="text-[10px] uppercase tracking-couture text-[#78645D] font-semibold block mb-1">
+              Secret Hours &middot; Order Confirmed
             </span>
-            <h1 className="font-serif text-3xl sm:text-4xl text-[#141210]">
+            <h1 className="font-serif text-3xl sm:text-4xl text-[#1D1B1A]">
               Thank You, {order ? order.customer.name : 'Esteemed Client'}
             </h1>
-            <p className="text-xs sm:text-sm text-[#6E675F] mt-3 max-w-lg mx-auto font-sans leading-relaxed">
-              Your bespoke creation has entered our atelier work queue. Our master artisans are preparing your garment with archival care.
+            <p className="text-xs sm:text-sm text-[#78645D] mt-3 max-w-lg mx-auto font-sans leading-relaxed">
+              Your piece has been placed in our atelier production queue. It will arrive sealed in our minimal matte box bearing the card: <span className="italic font-medium text-[#1D1B1A]">&ldquo;We trust you with our secret.&rdquo;</span>
             </p>
 
             {/* Order Reference & Sequential Invoice Number */}
-            <div className="my-8 p-4 bg-[#FAF8F5] border border-[#E7E2DA] rounded-sm grid grid-cols-2 gap-4 text-xs">
+            <div className="my-8 p-4 bg-[#F7F4EF] border border-[#E9DFD2] rounded-sm grid grid-cols-2 gap-4 text-xs font-sans">
               <div>
-                <span className="text-[#6E675F] block">Order Reference:</span>
-                <span className="font-mono font-bold text-sm text-[#141210] mt-0.5 block">
+                <span className="text-[#78645D] block">Order Reference:</span>
+                <span className="font-mono font-bold text-sm text-[#1D1B1A] mt-0.5 block">
                   #{orderNumber}
                 </span>
               </div>
               <div>
-                <span className="text-[#6E675F] block">Tax Invoice No:</span>
-                <span className="font-mono font-bold text-sm text-[#C59B27] mt-0.5 block">
-                  {order?.invoiceNumber || 'ZAR/2026-27/00001'}
+                <span className="text-[#78645D] block">Tax Invoice No:</span>
+                <span className="font-mono font-bold text-sm text-[#1D1B1A] mt-0.5 block">
+                  {order?.invoiceNumber || 'SH/2026-27/00001'}
                 </span>
               </div>
             </div>

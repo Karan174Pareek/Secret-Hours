@@ -5,53 +5,53 @@ import Reveal from '../../motion/Reveal';
 
 const COLLECTIONS = [
   {
-    id: 'noor',
-    title: 'The Royal Noor Bridal',
-    tagline: 'Imperial Zardozi & Hand-Beaded Heirloom Lehengas',
-    pieces: '14 Bespoke Ensembles',
-    image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80',
-    link: '/shop?collection=noor',
-    colorAccent: '#C59B27',
+    id: 'unbecoming',
+    title: 'Unbecoming (Collection 01)',
+    tagline: 'The freedom of being, without the pressure of becoming. Reclaiming femininity on your own terms.',
+    pieces: 'Debut Collection',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+    link: '/shop?collection=unbecoming',
+    colorAccent: '#E9DFD2',
   },
   {
-    id: 'aaranya',
-    title: 'Aaranya Metamorphosis',
-    tagline: 'Sculptural Pleated Metallic Tissue & Organza Drapes',
-    pieces: '18 Runway Silhouettes',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80',
-    link: '/shop?collection=aaranya',
-    colorAccent: '#B48C36',
+    id: 'night-hours',
+    title: 'The Night Hours',
+    tagline: 'Some outfits deserve their own little secret. Sculptural evening gowns and after-hours corsetry.',
+    pieces: 'Evening Capsule',
+    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1200&q=80',
+    link: '/shop?collection=night-hours',
+    colorAccent: '#78645D',
   },
   {
-    id: 'vanya',
-    title: 'Vanya Imperial Silk',
-    tagline: 'Hand-Spun Matka Silk Sherwanis & Tailored Bandhgalas',
-    pieces: '12 Ceremonial Drops',
-    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=80',
-    link: '/shop?collection=vanya',
-    colorAccent: '#9E7A18',
+    id: 'between-us',
+    title: 'Between Us',
+    tagline: 'Between us, you look good. For the outfit that says everything without explaining a thing.',
+    pieces: 'Prêt & Separates',
+    image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80',
+    link: '/shop?collection=between-us',
+    colorAccent: '#1D1B1A',
   },
 ];
 
 export const FeaturedCollection = () => {
   return (
-    <section className="py-24 bg-[#FAF8F5] border-t border-[#E7E2DA]">
+    <section className="py-24 bg-[#F7F4EF] border-t border-[#E9DFD2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <Reveal>
-            <div className="inline-flex items-center space-x-2 text-[#C59B27] text-xs uppercase tracking-couture font-semibold mb-3">
+            <div className="inline-flex items-center space-x-2 text-[#78645D] text-xs uppercase tracking-couture font-semibold mb-3 font-sans">
               <Sparkles size={14} />
-              <span>Autumn / Winter Collections</span>
+              <span>A Story Unfolding in Public</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl text-[#141210] font-normal tracking-tight">
-              Curated Haute Couture
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#1D1B1A] font-normal tracking-tight">
+              Collections &amp; Capsule Drops
             </h2>
           </Reveal>
           <Reveal delay={2}>
             <Link
               to="/shop"
-              className="mt-4 md:mt-0 inline-flex items-center text-xs uppercase tracking-couture text-[#141210] hover:text-[#C59B27] font-semibold transition-colors group"
+              className="mt-4 md:mt-0 inline-flex items-center text-xs uppercase tracking-couture text-[#1D1B1A] hover:text-[#78645D] font-semibold transition-colors group font-sans"
             >
               View Full Archive <ArrowRight size={14} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>

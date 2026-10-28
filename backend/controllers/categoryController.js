@@ -1,11 +1,11 @@
 import Category from '../models/Category.js';
 
 const DEFAULT_CATEGORIES = [
-  { name: 'Bridal Couture', slug: 'couture', description: 'Heirloom lehengas and wedding ensembles', displayOrder: 1 },
-  { name: 'Draped Sarees', slug: 'sarees', description: 'Sculpted metallic tissue and organza sarees', displayOrder: 2 },
-  { name: 'Sherwanis & Menswear', slug: 'menswear', description: 'Bespoke silk raw bandhgalas and kurtas', displayOrder: 3 },
-  { name: 'Pret Separates', slug: 'pret', description: 'Handloom tunics and contemporary ready-to-wear', displayOrder: 4 },
-  { name: 'Embroidered Accessories', slug: 'accessories', description: 'Handcrafted zardozi potlis and stoles', displayOrder: 5 },
+  { name: 'Structural Corsetry', slug: 'corsetry', description: 'Architectural bodices and sculpted steel-boned corsets', displayOrder: 1 },
+  { name: 'Fluid Drapes & Slips', slug: 'slips', description: 'Bias-cut mulberry silk slips and draped cowl gowns', displayOrder: 2 },
+  { name: 'Tailored Rebel Outerwear', slug: 'outerwear', description: 'Oversized structured blazers and cropped statement trenches', displayOrder: 3 },
+  { name: 'Contradiction Separates', slug: 'separates', description: 'Wide-leg pleat trousers, organza shirts, and fine knitwear', displayOrder: 4 },
+  { name: 'Atelier Accessories', slug: 'accessories', description: 'Discreet minimal leather bags, stoles, and printed silk scarves', displayOrder: 5 },
 ];
 
 export const categoryController = {
